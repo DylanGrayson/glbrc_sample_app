@@ -26,8 +26,8 @@ SECRET_KEY = '!sf##s40vhn3x8kl@_!p3w3qpi*t5c-vj03_4&q+hn#-^p@kl_'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'glbrc_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

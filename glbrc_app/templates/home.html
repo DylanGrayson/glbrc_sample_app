@@ -1,0 +1,50 @@
+<head>
+  <title>GLBRC Sample App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <span class="col-md-4">Hello {{user}}</span>
+      <h1 class="col-md-4 text-md-center">Home Page</h1>
+      <div class="col-md-2">
+        <div class="dropdown open">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More Apps
+          </button>
+            <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenuButton">
+              {% for icon in apps %}
+                <form action='{% url "add-app" %}' method="POST" class="dropdown-item">
+                  {% csrf_token %}
+                  <input type="hidden" name="app-id" value="{{icon.app.id}}">
+                  <input type="submit" class="btn" value="{{icon.app.name}}">
+                </form>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <a href="{% url 'logout' %}">Log Out</a>
+      </div>
+    </div>
+    <div class="row">
+      {% for icon in icons %}
+        <div class="col-md-3">
+          <div class="card card-block">
+            <form action='{% url "remove-app" %}' method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="app-id" value="{{icon.app.id}}">
+              <button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </form>
+            <h3 class="card-title">{{icon.app.name}}</h3>
+            <p class="card-text">{{icon.app.description}}</p>
+            <a href="#" class="btn btn-primary">Launch</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+</body>
