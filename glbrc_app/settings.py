@@ -55,7 +55,7 @@ ROOT_URLCONF = 'glbrc_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates', 'templates'],
+        'DIRS': ['./templates', '/home/ubuntu/glbrc_app/glbrc_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
